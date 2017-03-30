@@ -33,7 +33,7 @@ const Types = {
 const regRules = {
     type: (target, value) => !isNullOrUndefined(target) && !Types[value](target),
     /** 必填 */
-    required: (target, value) => isNullOrUndefined(target) && value,
+    required: (target, value) => (isNullOrUndefined(target) || target === '') && value,
     /** 最大值 */
     max: (target, value) => target > value,
     /** 最小值  */
@@ -51,15 +51,15 @@ const regRules = {
     }
 }
 
-function test (target, rules) {
-  for (let rule of rules) {
-    const { message, ...other } = rule
-    for (let reg in other) {
-      if (regRules[reg](target, rule[reg])) {
-        return message || 'error'
-      }
+function test(target, rules) {
+    for (let rule of rules) {
+        const { message, ...other } = rule
+        for (let reg in other) {
+            if (regRules[reg](target, rule[reg])) {
+                return message || 'error'
+            }
+        }
     }
-  }
 }
 
 /**
