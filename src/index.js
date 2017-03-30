@@ -67,9 +67,9 @@ function test (target, rules) {
  * @param {Function|Array|Object} reg 校验规则
  */
 export default function (reg) {
-    if (Object.prototype.toString.call(rule) === '[object Function]') {
+    if (Object.prototype.toString.call(reg) === '[object Function]') {
         return validate((value, source) => test(value, reg(value, source)))
-    } else if (Object.prototype.toString.call(rule) === '[object Object]') {
+    } else if (Object.prototype.toString.call(reg) === '[object Object]') {
         return validate((value, source) => test(value, [reg]))
     }
     else {
