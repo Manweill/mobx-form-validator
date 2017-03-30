@@ -1,5 +1,5 @@
 {
-  "name": "mobx-form-validator",
+  "name": "mobx-form-validation",
   "version": "0.2.1",
   "description": "use rules by mobx-form-validate",
   "main": "src/index.js",
@@ -9,20 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manweill/mobx-form-validator.git"
+    "url": "git+https://github.com/manweill/mobx-form-validation.git"
   },
   "keywords": [
     "mobx",
     "mobx-form",
+    "validator",
+    "validate",
     "mobx-form-validate",
-    "mobx-form-validator"
+    "mobx-form-validation"
   ],
   "author": "manweill",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/manweill/mobx-form-validator/issues"
+    "url": "https://github.com/manweill/mobx-form-validation/issues"
   },
-  "homepage": "https://github.com/manweill/mobx-form-validator#readme",
+  "homepage": "https://github.com/manweill/mobx-form-validation#readme",
   "dependencies": {
     "mobx-form-validate": "^1.0.2",
     "validator": "^7.0.0"
