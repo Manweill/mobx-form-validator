@@ -1,0 +1,35 @@
+{
+  "name": "mobx-form-validator",
+  "version": "0.1.2",
+  "description": "use rules by mobx-form-validate",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manweill/mobx-form-validator.git"
+  },
+  "keywords": [
+    "mobx",
+    "mobx-form",
+    "mobx-form-validate",
+    "mobx-form-validator"
+  ],
+  "author": "manweill",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manweill/mobx-form-validator/issues"
+  },
+  "homepage": "https://github.com/manweill/mobx-form-validator#readme",
+  "dependencies": {
+    "mobx-form-validate": "^1.0.2",
+    "validator": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0"
+  }
+}

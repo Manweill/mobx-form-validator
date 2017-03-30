@@ -1,1 +1,1 @@
-# mobx-form-validator
+# mobx-form-validate-rule
