@@ -1,5 +1,5 @@
 # mobx-form-validation
-extends mobx-form-validate
+extends [mobx-form-validate](https://github.com/gre/react-native-view-shot-example)
 
 ## Installation
 
