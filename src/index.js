@@ -55,7 +55,7 @@ function test(target, rules) {
     for (let rule of rules) {
         const { message, ...other } = rule
         const funcs = Object.keys(other)
-        if (funcs.length <= 0) return message || 'error'
+        if (funcs.length <= 0 && message) return message || 'error'
         for (let reg of funcs) {
             if (regRules[reg](target, rule[reg])) {
                 return message || 'error'
