@@ -43,24 +43,24 @@ class TestModel {
 ## rules
 
 #### type
-Ascii
-Base64
-Boolean
-CreditCard
-Currency
-DataURI
-Decimal
-Email
-Float
-HexColor
-Hexadecimal
-IP
-Int
-JSON
-MACAddress
-Numeric
-URL
-UUID
+`Ascii`
+`Base64`
+`Boolean`
+`CreditCard`
+`Currency`
+`DataURI`
+`Decimal`
+`Email`
+`Float`
+`HexColor`
+`Hexadecimal`
+`IP`
+`Int`
+`JSON`
+`MACAddress`
+`Numeric`
+`URL`
+`UUID`
 #### required
 #### max
 #### min
