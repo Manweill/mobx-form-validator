@@ -43,6 +43,7 @@ class TestModel {
 ## rules
 
 #### type
+<<<<<<< HEAD
 `Ascii`
 `Base64`
 `Boolean`
@@ -61,6 +62,26 @@ class TestModel {
 `Numeric`
 `URL`
 `UUID`
+=======
+- Ascii
+- Base64
+- Boolean
+- CreditCard
+- Currency
+- DataURI
+- Decimal
+- Email
+- Float
+- HexColor
+- Hexadecimal
+- IP
+- Int
+- JSON
+- MACAddress
+- Numeric
+- URL
+- UUID
+>>>>>>> 140213a14e99ea21f76f5762e0e1af6d4fd47c71
 #### required
 #### max
 #### min
