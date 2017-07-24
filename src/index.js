@@ -54,7 +54,9 @@ const regRules = {
 function test(target, rules) {
     for (let rule of rules) {
         const { message, ...other } = rule
-        for (let reg in other) {
+        const funcs = keys(other)
+        if (funcs.length <= 0) return message || 'error'
+        for (let reg of funcs) {
             if (regRules[reg](target, rule[reg])) {
                 return message || 'error'
             }
