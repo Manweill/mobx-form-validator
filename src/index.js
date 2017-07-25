@@ -46,7 +46,7 @@ const regRules = {
      */
     length: (target, value) => {
         if (Object.prototype.toString.call(value) === '[object Array]' && value.length === 2) {
-            return !isNullOrUndefined(target) && target.length && !(target.length > value[0] && target.length < value[1])
+            return !isNullOrUndefined(target) && target.length && (target.length <= value[0] || target.length <= value[1])
         }
     }
 }

@@ -40,6 +40,32 @@ class TestModel {
 }
 ```
 
+### example 3
+```js
+class TestModel {
+  
+  @observable
+  @validation([
+    { required: true, message: '请输入新密码' },
+    { length: [1, 15], message: '请输入6-15位的密码' }
+  ])
+  passwordNew
+
+  @observable
+  @validation((value, source) => {
+    let message = ''
+    if (!value) {
+      message = '请输入确认密码'
+    }
+    else if (value != source.passwordNew) {
+      message = '两次输入的密码不一样'
+    }
+    return [{ message }]
+  })
+  passwordConfirm
+}
+```
+
 ## rules
 
 #### type
