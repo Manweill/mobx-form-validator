@@ -1,5 +1,5 @@
-# mobx-form-validation
-extends mobx-form-validate
+# mobx-form-validator
+base on mobx-form-validate
 
 ## Installation
 
@@ -15,7 +15,7 @@ method fn return regs
 ```js
 class TestModel {
   @observable
-  @validation([
+  @validator([
     { required: true,messaeg:'required!' },
     { max: 99, min: 11, message: 'The age range was 11-99 years old' }
   ])
@@ -31,7 +31,7 @@ class TestModel {
   min =1
 
   @observable
-  @validation((value,source)=>{
+  @validator((value,source)=>{
       return [{
            max: source.max, min: source.min, message: 'The age range was 11-99 years old' 
       }]

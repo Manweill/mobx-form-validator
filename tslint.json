@@ -1,0 +1,19 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "linebreak-style": [
+            true, "LF"
+        ],
+        "indent": [
+            true, "spaces", "2"
+        ],
+        "quotemark": [
+            true, "single", "jsx-double"
+        ]
+    },
+    "rulesDirectory": ["node_modules/tslint-microsoft-contrib"]
+}
