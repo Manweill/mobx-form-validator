@@ -5,9 +5,7 @@ base on mobx-form-validate
 
 
 ## API
-#### @validation({reg,msg})
-#### @validation([{reg,msg},{reg,msg}...])
-#### @validation((value,source)=>{fn...})
+#### @validator([{reg,msg},{reg,msg}...])
 method fn return regs
 
 ## Usage
