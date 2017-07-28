@@ -10,9 +10,9 @@ camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npm.biggersoft.com/camelcase/download/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
-mobx@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.npm.biggersoft.com/mobx/download/mobx-3.2.1.tgz#6aeade0120cc3f78baa57195031630a0ae8f13cf"
+mobx@^2.0.0:
+  version "2.7.0"
+  resolved "https://registry.npm.biggersoft.com/mobx/download/mobx-2.7.0.tgz#cf3d82d18c0ca7f458d8f2a240817b3dc7e54a01"
 
 tslint-microsoft-contrib@^5.0.1:
   version "5.0.1"

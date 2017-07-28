@@ -1,8 +1,9 @@
 {
   "name": "mobx-form-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "use rules by mobx-form-validate",
   "main": "lib/index.js",
+  "typings": "./lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib"
@@ -15,7 +16,8 @@
     "mobx",
     "mobx-form",
     "mobx-form-validate",
-    "mobx-form-validator"
+    "mobx-form-validator",
+    "validator"
   ],
   "author": "manweill",
   "license": "MIT",
@@ -23,11 +25,14 @@
     "url": "https://github.com/Manweill/mobx-form-validator/issues"
   },
   "homepage": "https://github.com/Manweill/mobx-form-validator#readme",
+  "peerDepenencies": {
+    "mobx": "^2.0.0"
+  },
   "dependencies": {
     "@types/camelcase": "^0.0.30",
     "camelcase": "^4.1.0",
-    "mobx": "^3.2.1",
-    "validator": "^7.0.0"
+    "validator": "^7.0.0",
+    "mobx": "^2.0.0"
   },
   "devDependencies": {
     "tslint-microsoft-contrib": "^5.0.1",
