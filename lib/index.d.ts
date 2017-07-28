@@ -33,7 +33,12 @@ export interface IRule {
     message: string;
     /** 数据类型   */
     type?: Types;
-    /** 自定义校验，返回错误信息，如果为空则认为校验成功   */
+    /**
+     *  自定义校验，返回错误信息，如果为空则认为校验成功
+     * @param target 要校验的属性字段
+     * @param targetValue 要检验的值
+     * @param source 要校验的属性所属的对象
+     */
     custom: (target, targetValue, source) => string | undefined;
     /** 校验前转换,返回要转换的值，如果返回空，则取当前值   */
     before: (value) => any;
