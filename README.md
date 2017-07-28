@@ -84,8 +84,8 @@ console.log(form.isValid);                        // false
 ## API
 |参数      | 说明                                            | 类型 
 |---|---|---
-|before    | 校验前转换,返回要转换的值，如果返回空，则取当前值   | (value) => |any
-|[custom](#custom)    | 自定义校验，返回错误信息，如果为空则认为校验成功    | (target, |targetValue, source) => string | undefined
+|before    | 校验前转换,返回要转换的值，如果返回空，则取当前值   |  (value) => any
+|[custom](#custom)    | 自定义校验，返回错误信息，如果为空则认为校验成功    | (target, targetValue, source) => string \| undefined
 |lengths   | 字符串货数组长度 eg: length:[6,15]               | number[]
 |max       | 最大值                                          | number
 |message   | 提示信息                                        | string
