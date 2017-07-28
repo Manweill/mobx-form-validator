@@ -1,15 +1,16 @@
 {
-  "name": "mobx-form-validation",
-  "version": "0.3.3",
+  "name": "mobx-form-validator",
+  "version": "1.0.1",
   "description": "use rules by mobx-form-validate",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "typings": "./lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/manweill/mobx-form-validation.git"
+    "url": "git+https://github.com/Manweill/mobx-form-validator.git"
   },
   "keywords": [
     "mobx",
@@ -17,21 +18,26 @@
     "validator",
     "validate",
     "mobx-form-validate",
-    "mobx-form-validation"
+    "mobx-form-validator",
+    "validator"
   ],
   "author": "manweill",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/manweill/mobx-form-validation/issues"
+    "url": "https://github.com/Manweill/mobx-form-validator/issues"
   },
-  "homepage": "https://github.com/manweill/mobx-form-validation#readme",
+  "homepage": "https://github.com/Manweill/mobx-form-validator#readme",
+  "peerDepenencies": {
+    "mobx": "^2.0.0"
+  },
   "dependencies": {
-    "mobx-form-validate": "^1.0.2",
-    "validator": "^7.0.0"
+    "@types/camelcase": "^0.0.30",
+    "camelcase": "^4.1.0",
+    "validator": "^7.0.0",
+    "mobx": "^2.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-0": "^6.22.0"
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typescript": "^2.4.2"
   }
 }
