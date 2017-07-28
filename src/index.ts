@@ -107,8 +107,9 @@ class Method {
    * @param value 类型
    */
   public static type(targetValue, value: Types) {
-    if (!isNullOrUndefined(targetValue) && validator[value]) {
-      return !validator[value](targetValue);
+    const method = `is${value}`;
+    if (!isNullOrUndefined(targetValue) && !!validator[method]) {
+      return !validator[method](targetValue);
     }
   }
 }
