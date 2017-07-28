@@ -1,4 +1,3 @@
-import validator = require('validator');
 export declare enum Types {
     Ascii = "isAscii",
     Base64 = "isBase64",
@@ -27,17 +26,17 @@ export interface IRule {
     /** 最小值   */
     min?: number;
     /** 正则表达式   */
-    patten?: RegExp;
-    /** 长度范围   */
-    len?: number[];
+    pattern?: RegExp;
+    /** 字符串货数组长度   */
+    lengths?: number[];
     /** 提示信息   */
     message: string;
     /** 数据类型   */
     type?: Types;
-    /** 自定义校验   */
-    validator: (target, targetValue, source) => any;
-    /** 校验前转换   */
-    beforeValid: (value) => any;
+    /** 自定义校验，返回错误信息，如果为空则认为校验成功   */
+    custom: (target, targetValue, source) => string | undefined;
+    /** 校验前转换,返回要转换的值，如果返回空，则取当前值   */
+    before: (value) => any;
 }
 export declare function getValidateError(): any;
 export declare function getIsValid(): boolean;
@@ -45,5 +44,4 @@ export declare function getIsValid(): boolean;
  * @param reg 校验规则
  * @param msg 全局提示信息
  */
-declare function validator(rules: IRule[]): (target: any, name: any, args: any) => void;
-export default validator;
+export default function (rules: IRule[]): (target: any, name: any, args: any) => void;

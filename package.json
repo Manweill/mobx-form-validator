@@ -1,7 +1,7 @@
 {
   "name": "mobx-form-validator",
   "version": "1.0.1",
-  "description": "use rules by mobx-form-validate",
+  "description": "extends mobx-form-validate",
   "main": "lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {

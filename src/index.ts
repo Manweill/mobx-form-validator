@@ -32,26 +32,30 @@ export interface IRule {
   /** 最小值   */
   min?: number;
   /** 正则表达式   */
-  patten?: RegExp;
-  /** 长度范围   */
-  len?: number[];
+  pattern?: RegExp;
+  /** 字符串货数组长度   */
+  lengths?: number[];
   /** 提示信息   */
   message: string;
   /** 数据类型   */
   type?: Types;
-  /** 自定义校验   */
-  validator: (target, targetValue, source) => any;
-  /** 校验前转换   */
-  beforeValid: (value) => any;
+  /**
+   *  自定义校验，返回错误信息，如果为空则认为校验成功
+   * @param target 要校验的属性字段
+   * @param targetValue 要检验的值
+   * @param source 要校验的属性所属的对象
+   */
+  custom: (target, targetValue, source) => string | undefined;
+  /** 校验前转换,返回要转换的值，如果返回空，则取当前值   */
+  before: (value) => any;
 }
 
 /**
  * 判断是否为NULL或者underfined
- * 如果v是字符串，则还要判断长度是否为0
  * @param v 要判断的参数
  */
 function isNullOrUndefined(v): boolean {
-  return v === undefined || v === null;
+  return v === undefined || v === null || v === '';
 }
 
 class Method {
@@ -61,7 +65,7 @@ class Method {
    * @param value 标准值
    */
   public static required(targetValue, value) {
-    return (isNullOrUndefined(targetValue) || targetValue === '') && value;
+    return isNullOrUndefined(targetValue) && value;
   }
 
   /**
@@ -86,15 +90,15 @@ class Method {
    * @param targetValue 要检测的目标属性
    * @param value 标准值
    */
-  public static patten(targetValue, value) {
-    return !isNullOrUndefined(targetValue) && value && value.test && !value.test(targetValue);
+  public static pattern(targetValue, value) {
+    return !isNullOrUndefined(targetValue) ? value && value.test && !value.test(targetValue) : false;
   }
 
-  public static len(targetValue, value) {
+  public static lengths(targetValue, value) {
     if (Object.prototype.toString.call(value) === '[object Array]' && value.length === 2) {
       return !isNullOrUndefined(targetValue)
         && targetValue.length
-        && (targetValue.length <= value[0] || targetValue.length <= value[1]);
+        && (targetValue.length < value[0] || targetValue.length > value[1]);
     }
   }
   /**
@@ -103,11 +107,20 @@ class Method {
    * @param value 类型
    */
   public static type(targetValue, value: Types) {
-    if (!isNullOrUndefined(targetValue) && value && validator[value]) {
+    if (!isNullOrUndefined(targetValue) && validator[value]) {
       return !validator[value](targetValue);
     }
   }
 }
+
+const Tips = {
+  lengths: (target, value) => `${target}.length must in [${value[0]},${value[1]}] `,
+  max: (target, value) => `${target} maxValue is ${value} `,
+  min: (target, value) => `${target} minValue is ${value} `,
+  pattern: (target, value) => `${target} must match ${value} `,
+  required: (target, value) => `${target} is required`,
+  type: (target, value) => `${target} is typeof ${value}`,
+};
 
 function defineComputedProperty(target: any, name: string, descriptor: any) {
   Object.defineProperty(
@@ -130,7 +143,8 @@ export function getIsValid() {
  * @param reg 校验规则
  * @param msg 全局提示信息
  */
-function validator(rules: IRule[]) {
+
+export default function(rules: IRule[]) {
   const test = (target, targetValue, source) => valid(target, targetValue, source, rules);
 
   return (target, name, args) => {
@@ -176,20 +190,18 @@ function validator(rules: IRule[]) {
 
 function valid(target: string, targetValue: any, source: object, rules: IRule[]) {
   for (const rule of rules) {
-    const { message, validator: validFunc, beforeValid, ...other } = rule;
-    // 如果validator有值，则其他校验属性无效
-    if (validFunc) {
-      return rule.validator(target, targetValue, source);
+    const { message, custom, before, ...other } = rule;
+    // custom 自定义校验器有值
+    if (custom) {
+      return custom(target, targetValue, source);
     } else {
-      let value = beforeValid && beforeValid(targetValue);
+      let value = before && before(targetValue);
       value = value || targetValue;
       for (const reg in other) {
         if (Method[reg](value, rule[reg])) {
-          return message || 'error';
+          return message || Tips[reg](target, rule[reg]) || `${target} has error`;
         }
       }
     }
   }
 }
-
-export default validator;
