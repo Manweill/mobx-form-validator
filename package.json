@@ -21,7 +21,7 @@
     "mobx-form-validator",
     "validator"
   ],
-  "author": "manweill",
+  "author": "Manweill",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Manweill/mobx-form-validator/issues"
