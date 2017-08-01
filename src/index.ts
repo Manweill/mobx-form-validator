@@ -25,29 +25,31 @@ export enum Types {
 }
 
 export interface IRule {
-  /** 是否必填 */
-  required?: boolean;
+  /** 全等对比 */
+  compare?: string;
+  /** 字符串货数组长度   */
+  lengths?: number[];
   /** 最大值  */
   max?: number;
+  /** 提示信息   */
+  message: string;
   /** 最小值   */
   min?: number;
   /** 正则表达式   */
   pattern?: RegExp;
-  /** 字符串货数组长度   */
-  lengths?: number[];
-  /** 提示信息   */
-  message: string;
+  /** 是否必填 */
+  required?: boolean;
   /** 数据类型   */
   type?: Types;
+   /** 校验前转换,返回要转换的值，如果返回空，则取当前值   */
+  before(value): any;
   /**
    *  自定义校验，返回错误信息，如果为空则认为校验成功
    * @param target 要校验的属性字段
    * @param targetValue 要检验的值
    * @param source 要校验的属性所属的对象
    */
-  custom: (target, targetValue, source) => string | undefined;
-  /** 校验前转换,返回要转换的值，如果返回空，则取当前值   */
-  before: (value) => any;
+  custom(target, targetValue, source): string | undefined;
 }
 
 /**
@@ -60,12 +62,23 @@ function isNullOrUndefined(v): boolean {
 
 class Method {
   /**
-   * 是否必填
-   * @param target 要检测的目标属性
-   * @param value 标准值
+   * 全等对比
+   * @param targetValue 要检测的属性
+   * @param value 要对比的属性
+   * @param source 数据源
    */
-  public static required(targetValue, value) {
-    return isNullOrUndefined(targetValue) && value;
+  public static compare(targetValue, value, source) {
+    if (!isNullOrUndefined(targetValue) && value && source[value]) {
+      return targetValue === source[value];
+    }
+  }
+
+  public static lengths(targetValue, value) {
+    if (Object.prototype.toString.call(value) === '[object Array]' && value.length === 2) {
+      return !isNullOrUndefined(targetValue)
+        && targetValue.length
+        && (targetValue.length < value[0] || targetValue.length > value[1]);
+    }
   }
 
   /**
@@ -93,13 +106,13 @@ class Method {
   public static pattern(targetValue, value) {
     return !isNullOrUndefined(targetValue) ? value && value.test && !value.test(targetValue) : false;
   }
-
-  public static lengths(targetValue, value) {
-    if (Object.prototype.toString.call(value) === '[object Array]' && value.length === 2) {
-      return !isNullOrUndefined(targetValue)
-        && targetValue.length
-        && (targetValue.length < value[0] || targetValue.length > value[1]);
-    }
+  /**
+   * 是否必填
+   * @param target 要检测的目标属性
+   * @param value 标准值
+   */
+  public static required(targetValue, value) {
+    return isNullOrUndefined(targetValue) && value;
   }
   /**
    * 判断类型
@@ -112,9 +125,11 @@ class Method {
       return !validator[method](targetValue);
     }
   }
+
 }
 
 const Tips = {
+  compare: (target, value) => `${target} is not equal to ${value}`,
   lengths: (target, value) => `${target}.length must in [${value[0]},${value[1]}] `,
   max: (target, value) => `${target} maxValue is ${value} `,
   min: (target, value) => `${target} minValue is ${value} `,
