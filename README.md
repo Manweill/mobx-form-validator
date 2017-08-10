@@ -1,12 +1,15 @@
 # mobx-form-validator
+
 ### base on [mobx-form-validate](https://github.com/tdzl2003/mobx-form-validate) and [validator](https://github.com/chriso/validator.js)
 
 ## Installation
+
 npm i mobx-form-validator
 or
 yarn add mobx-form-validator
 
 ## Usage
+
 ```js
 import validator from 'mobx-form-validator';
 
@@ -21,6 +24,7 @@ class TestModel{
 }
 ```
 ### Explame
+
 ```js
 
 export default class RegisterForm {
@@ -82,9 +86,11 @@ console.log(form.isValid);                        // false
 
 
 ## API
+
 |参数      | 说明                                            | 类型 
 |---|---|---
 |before    | 校验前转换,返回要转换的值，如果返回空，则取当前值   |  (value) => any
+|compare   | 与当前对象的某一字段进行全等对比                   | string
 |[custom](#custom)    | 自定义校验，返回错误信息，如果为空则认为校验成功    | (target, targetValue, source) => string \| undefined
 |lengths   | 字符串货数组长度 eg: length:[6,15]               | number[]
 |max       | 最大值                                          | number
@@ -92,13 +98,15 @@ console.log(form.isValid);                        // false
 |min       | 最小值                                          | number
 |pattern   | 正则表达式                                      | RegExp
 |required  | 是否必填                                        | boolean
-|type      | 数据类型                                        | [enum Types](#enum-types)
+|type      | 数据类型                                        | [Enum Types](#enum-types)
 
 ### Enum Types
+
 `Ascii` `Base64`  `Boolean` `CreditCard`  `Currency`  `DataURI` `Decimal` `Email` `Float` `HexColor`  `Hexadecimal` `IP`  `Int` `JSON`  `MACAddress`  `Numeric` `URL` `UUID`
 
 
 ### custom
+
 ``` js
  /**
    * 自定义校验，返回错误信息，如果为空则认为校验成功
