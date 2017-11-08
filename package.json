@@ -1,9 +1,9 @@
 {
   "name": "mobx-form-validator",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "extends mobx-form-validate",
   "main": "lib/index.js",
-  "typings": "./lib/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir lib"

@@ -1,23 +1,4 @@
-export declare enum Types {
-    Ascii = "isAscii",
-    Base64 = "isBase64",
-    Boolean = "isBoolean",
-    CreditCard = "isCreditCard",
-    Currency = "isCurrency",
-    DataURI = "isDataURI",
-    Decimal = "isDecimal",
-    Email = "isEmail",
-    Float = "isFloat",
-    HexColor = "isHexColor",
-    Hexadecimal = "isHexadecimal",
-    IP = "isIP",
-    Int = "isInt",
-    JSON = "isJSON",
-    MACAddress = "isMACAddress",
-    Numeric = "isNumeric",
-    URL = "isURL",
-    UUID = "isUUID",
-}
+export declare type Types = 'Ascii' | 'Base64' | 'Boolean' | 'CreditCard' | 'Currency' | 'DataURI' | 'Decimal' | 'Email' | 'Float' | 'HexColor' | 'Hexadecimal' | 'IP' | 'Int' | 'JSON' | 'MACAddress' | 'Numeric' | 'URL' | 'UUID';
 export interface IRule {
     /** 全等对比 */
     compare?: string;
@@ -36,7 +17,7 @@ export interface IRule {
     /** 数据类型   */
     type?: Types;
     /** 校验前转换,返回要转换的值，如果返回空，则取当前值   */
-    before(value: any): any;
+    beforeValidate(value: any): any;
     /**
      *  自定义校验，返回错误信息，如果为空则认为校验成功
      * @param target 要校验的属性字段

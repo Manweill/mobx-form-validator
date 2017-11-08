@@ -89,7 +89,7 @@ console.log(form.isValid);                        // false
 
 |参数      | 说明                                            | 类型 
 |---|---|---
-|before    | 校验前转换,返回要转换的值，如果返回空，则取当前值   |  (value) => any
+|beforeValidate    | 校验前转换,返回要转换的值，如果返回空，则取当前值   |  (value) => any
 |compare   | 与当前对象的某一字段进行全等对比                   | string
 |[custom](#custom)    | 自定义校验，返回错误信息，如果为空则认为校验成功    | (target, targetValue, source) => string \| undefined
 |lengths   | 字符串货数组长度 eg: length:[6,15]               | number[]
@@ -116,3 +116,16 @@ console.log(form.isValid);                        // false
    */
   custom: (target, targetValue, source) => string | undefined;
 ```
+
+## Change Log
+
+## 1.3.2
+`2017-11-08`
+- add before method rename to beforeValidate
+- fix Enum Type
+- fix index.d.ts pathc
+
+## 1.3.0
+`2017-08-10`
+- Features
+  - add compore method
